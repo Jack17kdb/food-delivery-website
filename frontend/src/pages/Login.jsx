@@ -107,7 +107,9 @@ const Login = () => {
             </div>
           </div>
         </div>
-        <AuthSlider className="hidden md:block" />
+        <div className="hidden md:block h-full w-full" >
+         <AuthSlider/>
+        </div>
       </div>
     </div>
   );
