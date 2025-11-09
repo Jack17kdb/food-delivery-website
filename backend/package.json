@@ -5,7 +5,10 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/server.js"
+    "dev": "nodemon src/server.js",
+    "upload": "node src/data/cloudinary-upload.js",
+    "push": "node src/data/mongo-push.js",
+    "full": "npm run upload && npm run push"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +20,7 @@
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "express-session": "^1.18.2",
+    "fs": "^0.0.1-security",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.19.2",
     "nodemailer": "^7.0.10",
