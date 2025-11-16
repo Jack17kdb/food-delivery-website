@@ -45,7 +45,7 @@ const Register = async (req, res) => {
         console.log("Error registering user: ", error);
         res.status(500).json({message: "Internal Server Error"});
     }
-}
+};
 
 const Login = async (req, res) => {
     try {
@@ -75,7 +75,7 @@ const Login = async (req, res) => {
         console.log("Error login in user: ", error);
         res.status(500).json({message: "Internal Server Error"});
     }
-}
+};
 
 const ForgotPassword = async (req, res) => {
     try {
@@ -92,6 +92,15 @@ const ForgotPassword = async (req, res) => {
         console.log("Error sending verification email: ", error);
         res.status(500).json({message: "Internal Server Error"});
     }
-}
+};
 
-export default { Register, Login, ForgotPassword }
+const AuthCheck = async(req, res) => {
+    try {
+        res.status(200).json(req.user);
+    } catch (error) {
+        res.status(500).json({ message: "Internal server error" });
+    }
+};
+
+
+export default { Register, Login, ForgotPassword, AuthCheck }
