@@ -1,18 +1,19 @@
 import React from 'react'
 import { FaSearch } from 'react-icons/fa';
+import FoodCard from '../components/FoodCard.jsx';
 
 const Home = () => {
   return (
-    <div className='min-h-screen mx-auto'>
+    <div className='min-h-screen mx-auto bg-gray-300'>
       <div className=''>
-        <div className='flex fixed inset-x-0 items-center justify-between mx-8 my-4 rounded-full px-6 py-3 outline-none bg-white/60 z-10 shadow-sm'>
+        <div className='flex fixed inset-x-0 items-center justify-between mx-8 my-4 rounded-full px-5 py-2 outline-none bg-white/60 z-10 shadow-sm'>
           <div>
-            <p className='text-black cursor-pointer font-bold text-md'>Rapid Eats</p>
+            <p className='text-black cursor-pointer font-bold text-md'>QuickBite</p>
           </div>
           <div className='flex gap-6 items-center'>
             <a href='/' className='text-md text-black hover:text-orange-400 transition-all duration-300 cursor-pointer'>Home</a>
             <a href='/' className='text-md text-black hover:text-orange-400 transition-all duration-300 cursor-pointer'>Cart</a>
-            <a href='/' className='text-md text-black hover:text-orange-400 transition-all duration-300 cursor-pointer'>Recipes</a>
+            <a href='/' className='text-md text-black hover:text-orange-400 transition-all duration-300 cursor-pointer'>Foods</a>
             <a href='/' className='text-md text-black hover:text-orange-400 transition-all duration-300 cursor-pointer'>SignOut</a>
             <div className='flex items-center px-3 py-1 rounded-full border border-gray-700 focus-within:ring-2 focus-within:ring-blue-400 focus-within:border-none'>
               <input type='text' placeholder='Search...' className='bg-transparent outline-none'/>
@@ -41,6 +42,31 @@ const Home = () => {
               <p className='text-md text-white'>Average Delivery Time</p>
             </div>
           </div>
+        </div>
+      </div>
+
+      <div className='flex items-center justify-center my-10'>
+        <div className='text-center'>
+          <div className='w-24 h-1 bg-orange-400 mx-auto mb-6 rounded-full'></div>
+          <h2 className='flex flex-col items-center justify-center font-semibold text-2xl leading-relaxed'>
+            <span>Healthy Affordable Meals</span>
+            <span>Delivered Directly</span>
+            <span>to Your Door</span>
+          </h2>
+          <div className='w-24 h-1 bg-orange-400 mx-auto mt-6 rounded-full'></div>
+        </div>
+      </div>
+
+      <div className='my-6 bg-white mx-3 rounded-xl p-6'>
+        <div className='text-center mb-8'>
+          <h2 className='font-bold text-2xl text-black mb-2'>Top Categories</h2>
+          <p className='text-gray-600'>This is the top picked foods for you</p>
+        </div>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3'>
+          <FoodCard />
+          <FoodCard />
+          <FoodCard />
+          <FoodCard />
         </div>
       </div>
     </div>
