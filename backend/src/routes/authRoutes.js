@@ -8,3 +8,5 @@ router.post("/register", authController.Register);
 router.post("/login", authController.Login);
 router.post("/forgot-password", authController.ForgotPassword);
 router.get("/me", protect, authController.AuthCheck);
+
+export default router;

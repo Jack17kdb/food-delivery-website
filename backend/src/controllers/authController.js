@@ -15,7 +15,7 @@ const Register = async (req, res) => {
         if(password.length < 6) {
             return res.status(400).json({message: "Password cannot be less than 6 characters"});
         }
-        const user = await User.findOne({email});
+        let user = await User.findOne({email});
         if (user) {
             return res.status(400).json({message: "Email already exists"});
         }
