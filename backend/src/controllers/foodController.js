@@ -42,7 +42,9 @@ const getFoodById = async(req, res) => {
 const getFoodsByCategory = async(req, res) => {
     try {
         const { category } = req.params;
-        const foods = await Food.find({category}).sort({name: 1});
+        const foods = await Food.find({
+            category: { $regex: `^${category}$`, $options: 'i' }
+        }).sort({name: 1});
         
         res.status(200).json({
             success: true,
