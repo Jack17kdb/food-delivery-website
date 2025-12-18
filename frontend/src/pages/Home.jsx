@@ -3,6 +3,7 @@ import FoodCard from "../components/FoodCard.jsx";
 import { useFoodStore } from "../store/foodStore.js";
 import CategorySlide from "../components/CategorySlide.jsx";
 import Navbar from "../components/Navbar.jsx";
+import HeroComponent from "../components/HeroComponent.jsx";
 
 const Home = () => {
   const [isSelectedIndex, setIsSelectedIndex] = useState(null);
@@ -34,32 +35,7 @@ const Home = () => {
     <div className="min-h-screen mx-auto bg-gray-300">
       <div className="">
         <Navbar />        
-        <div className="w-full h-screen relative">
-          <img
-            src="/noodles.webp"
-            alt="photo"
-            className="w-full h-screen object-cover filter brightness-50"
-          />
-          <div className="absolute top-1/3 left-10 gap-8 mb-2 text-white text-7xl font-bold max-w-2xl">
-            <p>Savor the Best</p>
-            <p>Flavours, Delivered</p>
-            <p>to Your Door</p>
-          </div>
-          <div className="absolute bottom-16 left-10 grid grid-cols-3 gap-8 max-w-2xl">
-            <div className="flex flex-col justify-center items-center">
-              <p className="text-orange-400 font-bold text-lg">10k+</p>
-              <p className="text-md text-white">Happy Clients</p>
-            </div>
-            <div className="flex flex-col justify-center items-center">
-              <p className="text-orange-400 font-bold text-lg">4.9</p>
-              <p className="text-md text-white">Average Rating</p>
-            </div>
-            <div className="flex flex-col justify-center items-center">
-              <p className="text-orange-400 font-bold text-lg">20 min</p>
-              <p className="text-md text-white">Average Delivery Time</p>
-            </div>
-          </div>
-        </div>
+        <HeroComponent />
       </div>
 
       <div className="flex items-center justify-center my-10">

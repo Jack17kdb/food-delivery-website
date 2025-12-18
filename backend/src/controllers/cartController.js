@@ -5,7 +5,7 @@ const getCart = async(req, res) => {
     try {
         const user = await User.findById(req.userId).populate({
             path: 'cart.foodId',
-            select: "name image cost"
+            select: "name category image cost"
         });
 
         if(!user){
@@ -42,7 +42,7 @@ const addItemToCart = async(req, res) => {
 
         user = await user.populate({
             path: 'cart.foodId',
-            select: 'name image cost'
+            select: 'name category image cost'
         });
 
         res.status(200).json({ message: 'Item added to cart', cart: user.cart });
@@ -86,7 +86,7 @@ const updateCartQuantity = async(req, res) => {
 
         user = await user.populate({
             path: 'cart.foodId',
-            select: 'name image cost'
+            select: 'name category image cost'
         });
 
         res.status(200).json({ message: 'Cart quantity updated', cart: user.cart });
@@ -113,7 +113,7 @@ const removeItemFromCart = async(req, res) => {
 
         user = await user.populate({
             path: 'cart.foodId',
-            select: 'name image cost'
+            select: 'name category image cost'
         });
 
         res.status(200).json({ message: 'Item removed from cart', cart: user.cart });
