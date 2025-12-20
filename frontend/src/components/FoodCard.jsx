@@ -1,6 +1,9 @@
 import React from "react";
+import { useCartStore } from "../store/cartStore.js";
 
 const FoodCard = ({ allFoods, isFetchingFoods, foodCategory }) => {
+  const { addItemToCart } = useCartStore();
+
   const maxItems = 12;
   const foodsToShow = foodCategory
     ? foodCategory.slice(0, maxItems)
@@ -30,8 +33,11 @@ const FoodCard = ({ allFoods, isFetchingFoods, foodCategory }) => {
                     ${food.cost}
                   </p>
                 </div>
-                <button className="cursor-pointer bg-orange-500 rounded-lg px-4 py-2 text-white active:scale-93 hover:bg-orange-600 transition-all duration-300">
-                  Order Me
+                <button
+                  className="cursor-pointer bg-orange-500 rounded-lg px-4 py-2 text-white active:scale-93 hover:bg-orange-600 transition-all duration-300"
+                  onClick={() => addItemToCart({ foodId: food._id, quantity: 1 })}
+                >
+                    Order Me
                 </button>
               </div>
             </div>

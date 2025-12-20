@@ -1,8 +1,22 @@
-import React from 'react'
-import Navbar from '../components/Navbar'
-import Order from '../components/Order'
+import React, { useEffect } from 'react'
+import Navbar from '../components/Navbar.jsx'
+import Order from '../components/Order.jsx'
+import { useCartStore } from '../store/cartStore.js'
 
 const Cart = () => {
+  const { cartItems, getCartItems } = useCartStore();
+
+  useEffect(() => {
+    getCartItems();
+  }, []);
+
+  let total = 0;
+  const calcTotal = () => {
+    cartItems.map((item) => {
+      total += item.price;
+    });
+  }
+
   return (
     <div className='min-h-screen bg-gray-200 pt-28 pb-10'>
         <Navbar />
@@ -54,7 +68,7 @@ const Cart = () => {
                     
                     <div className='flex items-center justify-between w-full pt-2'>
                         <p className='text-lg font-bold text-gray-800'>Total:</p>
-                        <p className='text-lg font-bold text-blue-600'>$0.00</p>
+                        <p className='text-lg font-bold text-blue-600'>${total}</p>
                     </div>
                 </div>
 

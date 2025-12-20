@@ -1,8 +1,23 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { FaSearch } from "react-icons/fa";
+import { useFoodStore } from '../store/foodStore';
+import { useState } from 'react';
 
 const Navbar = () => {
+  const [ searchTerm, setSearchTerm ] = useState("");
+  const { searchingFoods, searchResults } = useFoodStore();
+  const navigate = useNavigate();
+
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    if (searchTerm.trim()) {
+      await searchingFoods(searchTerm);
+      setSearchTerm("");
+      navigate('/search');
+    }
+  };
+
     const navLinkStyles = ({ isActive }) => 
         `text-sm font-medium transition-colors ${isActive ? "text-orange-500" : "text-gray-700 hover:text-orange-500"}`;
 
@@ -31,14 +46,20 @@ const Navbar = () => {
                 </NavLink>
             </div>
             
-            <div className="flex items-center px-4 py-1.5 rounded-full bg-gray-100 border border-transparent focus-within:border-orange-400 focus-within:bg-white transition-all">
+            <form
+              onSubmit={handleSearch}
+              className="flex items-center px-4 py-1.5 rounded-full bg-gray-100 border border-transparent focus-within:border-orange-400 focus-within:bg-white transition-all">
               <input
                 type="text"
                 placeholder="Search..."
+                value={searchTerm}
                 className="bg-transparent outline-none text-sm w-32 md:w-48"
+                onChange={(e) => setSearchTerm(e.target.value)}
               />
-              <FaSearch className="text-gray-400 text-sm cursor-pointer hover:text-orange-500" />
-            </div>
+              <button type="submit">
+                <FaSearch className="text-gray-400 text-sm cursor-pointer hover:text-orange-500" />
+              </button>
+            </form>
           </div>
         </nav>
     );
