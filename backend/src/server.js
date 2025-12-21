@@ -5,6 +5,7 @@ import { connectDB } from "./lib/db.js";
 import authRoutes from "./routes/authRoutes.js";
 import foodRoutes from "./routes/foodRoutes.js";
 import cartRoutes from "./routes/cartRoutes.js";
+import cookieParser from "cookie-parser";
 
 dotenv.config();
 const PORT = 5000 || 5003;
@@ -16,6 +17,7 @@ app.use(cors({
 }));
 
 app.use(express.json());
+app.use(cookieParser());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/food", foodRoutes);

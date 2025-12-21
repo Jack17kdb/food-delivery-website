@@ -6,7 +6,7 @@ const Register = async (req, res) => {
     try {
         const { username, email, password } = req.body;
         if(!username || !email || !password) {
-            return res.status(400).json({message: "Please fill all fields"});
+            return res.status(400).json({message: 'Please fill all fields'});
         }
         const emailRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
         if(!emailRegex.test(email)){
@@ -94,6 +94,16 @@ const ForgotPassword = async (req, res) => {
     }
 };
 
+const Logout = async(req, res) => {
+    try {
+        res.cookie("token", "", { maxAge: 0 });
+        res.status(200).json({ message: "Logged out successfully" });
+    } catch (error) {
+        console.log("Error in logout", error);
+        res.status(500).json({ message: "Internal Server Error" });
+    }
+};
+
 const AuthCheck = async(req, res) => {
     try {
         res.status(200).json(req.user);
@@ -103,4 +113,4 @@ const AuthCheck = async(req, res) => {
 };
 
 
-export default { Register, Login, ForgotPassword, AuthCheck }
+export default { Register, Login, ForgotPassword, Logout, AuthCheck }

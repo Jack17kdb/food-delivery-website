@@ -3,7 +3,7 @@ import User from "../models/userModel.js"
 
 const getCart = async(req, res) => {
     try {
-        const user = await User.findById(req.userId).populate({
+        const user = await User.findById(req.user._id).populate({
             path: 'cart.foodId',
             select: "name category image cost"
         });
@@ -28,7 +28,7 @@ const addItemToCart = async(req, res) => {
             return res.status(404).json({ message: 'Food item not found' });
         }
 
-        let user = await User.findById(req.userId);
+        let user = await User.findById(req.user._id);
 
         const itemIndex = user.cart.findIndex(item => item.foodId.toString() === foodId);
 
@@ -62,7 +62,7 @@ const updateCartQuantity = async(req, res) => {
     }
 
     try {
-        let user = await user.findById(req.userId);
+        let user = await User.findById(req.user._id);
 
         const itemIndex = user.cart.findIndex(item => item.foodId.toString() === foodId);
 
@@ -74,7 +74,7 @@ const updateCartQuantity = async(req, res) => {
             }
 
             if(action === 'decrease'){
-                cartItem.quantity -+ 1;
+                cartItem.quantity -= 1;
             }
 
             if(cartItem.quantity <= 0){
@@ -82,7 +82,7 @@ const updateCartQuantity = async(req, res) => {
             }
         }
 
-        await user.save;
+        await user.save();
 
         user = await user.populate({
             path: 'cart.foodId',
@@ -100,10 +100,10 @@ const removeItemFromCart = async(req, res) => {
     const { foodId } = req.params;
 
     try {
-        let user = await user.findById(req.userId);
+        let user = await User.findById(req.user._id);
 
         const initialLength = user.cart.length;
-        user.cart = user.cart.filter(item => item.foodId.toString() === foodId);
+        user.cart = user.cart.filter(item => item.foodId.toString() !== foodId);
 
         if (user.cart.length === initialLength) {
             return res.status(404).json({ message: 'Item not found in cart' });

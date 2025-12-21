@@ -2,13 +2,25 @@ import React, { useState } from "react";
 import { FaUser, FaLock, FaEye, FaEyeSlash, FaEnvelope } from "react-icons/fa";
 import { FaGoogle, FaFacebookF } from "react-icons/fa";
 import AuthSlider from "../components/AuthSlider.jsx";
+import { useAuthStore } from "../store/authStore.js";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const { signingIn, isSigningIn } = useAuthStore();
+  const [ formData, setFormData ] = useState({
+    username: "",
+    email: "",
+    password: ""
+  });
 
   const togglePassword = () => {
     setShowPassword((prev) => !prev);
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    signingIn(formData);
+  }
 
   return (
     <div className="min-h-screen py-5 bg-gray-300">
@@ -20,105 +32,114 @@ const Register = () => {
               Sign up with your username, email and password
             </p>
           </div>
-          <div className="flex flex-col gap-3">
-            <div className="flex items-center border border-gray-300 focus-within:ring-2 focus-within:ring-blue-400 focus-within:outline-none rounded-full p-3 h-10 w-75">
-              <FaUser className="text-gray-300 mr-3" />
-              <input
-                type="text"
-                placeholder="Username"
-                className="w-full outline-none text-gray-700"
-              />
-            </div>
-
-            <div className="flex items-center border border-gray-300 focus-within:ring-2 focus-within:ring-blue-400 focus-within:outline-none rounded-full p-3 h-10 w-75">
-              <FaEnvelope className="text-gray-300 mr-3" />
-              <input
-                type="email"
-                placeholder="Email"
-                className="w-full outline-none text-gray-700"
-              />
-            </div>
-
-            <div className="flex items-center border border-gray-300 focus-within:ring-2 focus-within:ring-blue-400 focus-within:outline-none rounded-full p-3 h-10 w-75">
-              <FaLock className="text-gray-300 mr-3" />
-              <input
-                type={showPassword ? "text" : "password"}
-                placeholder="Password"
-                className="w-full outline-none text-gray-700"
-              />
-              {!showPassword ? (
-                <FaEye
-                  size={20}
-                  onClick={togglePassword}
-                  className="flex-end text-gray-300 hover:text-blue-400 cursor-pointer"
+          <form onSubmit={handleSubmit}>
+            <div className="flex flex-col gap-3">
+              <div className="flex items-center border border-gray-300 focus-within:ring-2 focus-within:ring-blue-400 focus-within:outline-none rounded-full p-3 h-10 w-75">
+                <FaUser className="text-gray-300 mr-3" />
+                <input
+                  type="text"
+                  placeholder="Username"
+                  value={formData.username}
+                  className="w-full outline-none text-gray-700"
+                  onChange={(e) => setFormData({...formData, username: e.target.value})}
                 />
-              ) : (
-                <FaEyeSlash
-                  size={20}
-                  onClick={togglePassword}
-                  className="flex-end text-gray-300 hover:text-blue-400 cursor-pointer"
+              </div>
+
+              <div className="flex items-center border border-gray-300 focus-within:ring-2 focus-within:ring-blue-400 focus-within:outline-none rounded-full p-3 h-10 w-75">
+                <FaEnvelope className="text-gray-300 mr-3" />
+                <input
+                  type="email"
+                  placeholder="Email"
+                  value={formData.email}
+                  className="w-full outline-none text-gray-700"
+                  onChange={(e) => setFormData({...formData, email: e.target.value})}
                 />
-              )}
-            </div>
-            <div className="flex items-center justify-end">
-              <a
-                href="/forget-password"
-                className="font-semibold text-gray-800 hover:underline hover:text-blue-400 transition-all duration-300 text-sm"
-              >
-                Forget Password?
-              </a>
-            </div>
-            <div className="flex items-center justify-center">
-              <button
-                type="button"
-                className="bg-black text-white font-semibold cursor-pointer rounded-full p-2 h-10 active:scale-95 transition w-full"
-              >
-                Register
-              </button>
-            </div>
+              </div>
 
-            <div className="flex items-center my-4">
-              <div className="flex-grow border-t border-gray-400"></div>
-              <div className="mx-3 text-md text-black">or register with</div>
-              <div className="flex-grow border-t border-gray-400"></div>
-            </div>
+              <div className="flex items-center border border-gray-300 focus-within:ring-2 focus-within:ring-blue-400 focus-within:outline-none rounded-full p-3 h-10 w-75">
+                <FaLock className="text-gray-300 mr-3" />
+                <input
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Password"
+                  value={formData.password}
+                  className="w-full outline-none text-gray-700"
+                  onChange={(e) => setFormData({...formData, password: e.target.value})}
+                />
+                {!showPassword ? (
+                  <FaEye
+                    size={20}
+                    onClick={togglePassword}
+                    className="flex-end text-gray-300 hover:text-blue-400 cursor-pointer"
+                  />
+                ) : (
+                  <FaEyeSlash
+                    size={20}
+                    onClick={togglePassword}
+                    className="flex-end text-gray-300 hover:text-blue-400 cursor-pointer"
+                  />
+                )}
+              </div>
+              <div className="flex items-center justify-end">
+                <a
+                  href="/forget-password"
+                  className="font-semibold text-gray-800 hover:underline hover:text-blue-400 transition-all duration-300 text-sm"
+                >
+                  Forget Password?
+                </a>
+              </div>
+              <div className="flex items-center justify-center">
+                <button
+                  type="submit"
+                  disabled={isSigningIn}
+                  className="bg-black text-white font-semibold cursor-pointer rounded-full p-2 h-10 active:scale-95 transition w-full"
+                >
+                  {isSigningIn ? "Signing in..." : "Register"}
+                </button>
+              </div>
 
-            <div className="flex items-center justify-center">
-              <button
-                type="button"
-                className="bg-transparent text-black border border-gray-300 text-sm cursor-pointer rounded-full p-2 h-10 active:scale-95 transition w-full flex items-center justify-center gap-2"
-              >
-                <FaGoogle className="text-[#DB4437] text-xl" />
-                <span className="font-medium text-sm">
-                  Register with Google
-                </span>
-              </button>
-            </div>
+              <div className="flex items-center my-4">
+                <div className="flex-grow border-t border-gray-400"></div>
+                <div className="mx-3 text-md text-black">or register with</div>
+                <div className="flex-grow border-t border-gray-400"></div>
+              </div>
 
-            <div className="flex items-center justify-center">
-              <button
-                type="button"
-                className="bg-transparent text-black border border-gray-300 text-sm cursor-pointer rounded-full p-2 h-10 active:scale-95 transition w-full flex items-center justify-center gap-2"
-              >
-                <FaFacebookF className="text-blue-400 text-xl" />
-                <span className="font-medium text-sm">
-                  Register with Facebook
-                </span>
-              </button>
-            </div>
+              <div className="flex items-center justify-center">
+                <button
+                  type="button"
+                  className="bg-transparent text-black border border-gray-300 text-sm cursor-pointer rounded-full p-2 h-10 active:scale-95 transition w-full flex items-center justify-center gap-2"
+                >
+                  <FaGoogle className="text-[#DB4437] text-xl" />
+                  <span className="font-medium text-sm">
+                    Register with Google
+                  </span>
+                </button>
+              </div>
 
-            <div className="flex items-center justify-center gap-1 mt-10">
-              <span className="text-gray-700 text-sm">
-                Already have an account?
-              </span>{" "}
-              <a
-                href="/login"
-                className="font-semibold text-sm text-gray-800 hover:underline hover:text-blue-400 transition-all duration-300"
-              >
-                Login Now
-              </a>
+              <div className="flex items-center justify-center">
+                <button
+                  type="button"
+                  className="bg-transparent text-black border border-gray-300 text-sm cursor-pointer rounded-full p-2 h-10 active:scale-95 transition w-full flex items-center justify-center gap-2"
+                >
+                  <FaFacebookF className="text-blue-400 text-xl" />
+                  <span className="font-medium text-sm">
+                    Register with Facebook
+                  </span>
+                </button>
+              </div>
+
+              <div className="flex items-center justify-center gap-1 mt-10">
+                <span className="text-gray-700 text-sm">
+                  Already have an account?
+                </span>{" "}
+                <a
+                  href="/login"
+                  className="font-semibold text-sm text-gray-800 hover:underline hover:text-blue-400 transition-all duration-300"
+                >
+                  Login Now
+                </a>
+              </div>
             </div>
-          </div>
+          </form>
         </div>
         <div className="hidden md:block h-full w-full">
           <AuthSlider />

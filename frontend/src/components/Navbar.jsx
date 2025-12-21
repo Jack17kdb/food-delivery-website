@@ -3,10 +3,12 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { FaSearch } from "react-icons/fa";
 import { useFoodStore } from '../store/foodStore';
 import { useState } from 'react';
+import { useAuthStore } from '../store/authStore';
 
 const Navbar = () => {
   const [ searchTerm, setSearchTerm ] = useState("");
   const { searchingFoods, searchResults } = useFoodStore();
+    const { logout } = useAuthStore();
   const navigate = useNavigate();
 
   const handleSearch = async (e) => {
@@ -16,6 +18,11 @@ const Navbar = () => {
       setSearchTerm("");
       navigate('/search');
     }
+  };
+
+  const handleLogout = async () => {
+    await logout();
+    navigate('/login');
   };
 
     const navLinkStyles = ({ isActive }) => 
@@ -41,9 +48,13 @@ const Navbar = () => {
                 <NavLink to="/foods" className={navLinkStyles}>
                     Foods
                 </NavLink>
-                <NavLink to="/signout" className={navLinkStyles}>
-                    Sign Out
-                </NavLink>
+                <button
+                  type='button'
+                  className="text-sm font-medium text-gray-700 hover:text-orange-500 transition-colors cursor-pointer"
+                  onClick={handleLogout}
+                >
+                    logout
+                </button>
             </div>
             
             <form

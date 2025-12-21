@@ -8,14 +8,11 @@ const Cart = () => {
 
   useEffect(() => {
     getCartItems();
-  }, []);
+  }, [getCartItems]);
 
-  let total = 0;
-  const calcTotal = () => {
-    cartItems.map((item) => {
-      total += item.price;
-    });
-  }
+  const total = cartItems ? cartItems.reduce((acc, item) => {
+    return acc += (item.foodId?.cost * item.quantity);
+  }, 0) : 0;
 
   return (
     <div className='min-h-screen bg-gray-200 pt-28 pb-10'>
@@ -68,7 +65,7 @@ const Cart = () => {
                     
                     <div className='flex items-center justify-between w-full pt-2'>
                         <p className='text-lg font-bold text-gray-800'>Total:</p>
-                        <p className='text-lg font-bold text-blue-600'>${total}</p>
+                        <p className='text-lg font-bold text-blue-600'>${total.toFixed(2)}</p>
                     </div>
                 </div>
 
