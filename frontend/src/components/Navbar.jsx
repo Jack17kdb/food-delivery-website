@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { FaSearch } from "react-icons/fa";
 import { useFoodStore } from '../store/foodStore';
@@ -9,9 +9,27 @@ import { FiMenu, FiX } from 'react-icons/fi';
 const Navbar = () => {
   const [ searchTerm, setSearchTerm ] = useState("");
   const [ isMenuOpen, setIsMenuOpen ] = useState(false);
+  const navRef = useRef(null);
   const { searchingFoods, searchResults } = useFoodStore();
   const { logout } = useAuthStore();
   const navigate = useNavigate();
+
+  // Close menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (navRef.current && !navRef.current.contains(event.target)) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    if (isMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isMenuOpen]);
 
   const handleSearch = async (e) => {
     e.preventDefault();
@@ -33,7 +51,10 @@ const Navbar = () => {
     `text-sm font-medium transition-colors ${isActive ? "text-orange-500" : "text-gray-700 hover:text-orange-500"}`;
 
   return (
-    <nav className={`fixed top-4 inset-x-0 mx-auto max-w-7xl px-4 sm:px-6 py-3 bg-white/80 backdrop-blur-md z-50 shadow-lg transition-all duration-300 ${isMenuOpen ? 'rounded-3xl' : 'rounded-full'}`}>
+    <nav 
+      ref={navRef}
+      className={`fixed top-4 inset-x-0 mx-auto max-w-7xl px-4 sm:px-6 py-3 bg-white/80 backdrop-blur-md z-50 shadow-lg transition-all duration-200 ${isMenuOpen ? 'md:rounded-full rounded-3xl' : 'rounded-full'}`}
+    >
       <div className="flex items-center justify-between">
         <div>
           <NavLink to="/">
