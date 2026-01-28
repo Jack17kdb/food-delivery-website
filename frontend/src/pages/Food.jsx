@@ -40,47 +40,47 @@ const Food = () => {
     >
       <Navbar />
 
-      <div className="max-w-6xl mx-auto px-4 pt-28 grid grid-cols-1 lg:grid-cols-2 gap-10">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-24 sm:pt-28 grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-10">
         
-        <div className="bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-200">
+        <div className="bg-white rounded-2xl sm:rounded-3xl overflow-hidden shadow-sm border border-gray-200">
           <img
             src={food.image}
             alt={food.name}
-            className="w-full h-full object-cover"
+            className="w-full h-64 sm:h-80 lg:h-full object-cover"
           />
         </div>
 
         
         <div className="flex flex-col justify-between">
           <div>
-            <span className="inline-block bg-orange-100 text-orange-600 text-xs font-bold px-3 py-1 rounded-full uppercase mb-4">
+            <span className="inline-block bg-orange-100 text-orange-600 text-xs font-bold px-3 py-1 rounded-full uppercase mb-3 sm:mb-4">
               {food.category}
             </span>
 
-            <h1 className="text-4xl font-extrabold text-gray-900 mb-4">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-900 mb-3 sm:mb-4">
               {food.name}
             </h1>
 
-            <p className="text-gray-600 leading-relaxed mb-6">
+            <p className="text-sm sm:text-base text-gray-600 leading-relaxed mb-4 sm:mb-6">
               This {food.name} is freshly prepared using high-quality ingredients to ensure great taste, balanced nutrition, and a satisfying experience with every bite.
             </p>
 
-            <div className="flex items-center gap-6 mb-8">
+            <div className="flex items-center gap-4 sm:gap-6 mb-6 sm:mb-8">
               <div>
                 <p className="text-xs uppercase text-gray-400 font-semibold tracking-wide">Price</p>
-                <p className="text-3xl font-bold text-green-600">${food.cost}</p>
+                <p className="text-2xl sm:text-3xl font-bold text-green-600">${food.cost}</p>
               </div>
 
               <div>
                 <p className="text-xs uppercase text-gray-400 font-semibold tracking-wide">Availability</p>
-                <p className="text-lg font-bold text-gray-800">In Stock</p>
+                <p className="text-base sm:text-lg font-bold text-gray-800">In Stock</p>
               </div>
             </div>
           </div>
 
           <button
             onClick={() => addItemToCart({ foodId: food._id, quantity: 1 })}
-            className="w-full lg:w-auto bg-orange-500 hover:bg-orange-600 text-white px-10 py-4 rounded-2xl font-bold text-lg transition-all active:scale-95 shadow-lg shadow-orange-200"
+            className="w-full bg-orange-500 hover:bg-orange-600 text-white px-8 sm:px-10 py-3 sm:py-4 rounded-xl sm:rounded-2xl font-bold text-base sm:text-lg transition-all active:scale-95 shadow-lg shadow-orange-200"
           >
             Add to Cart
           </button>

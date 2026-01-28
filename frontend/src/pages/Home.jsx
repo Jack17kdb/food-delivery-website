@@ -39,22 +39,22 @@ const Home = () => {
         <HeroComponent />
       </div>
 
-      <div className="flex items-center justify-center my-10">
+      <div className="flex items-center justify-center my-8 sm:my-10 px-4">
         <div className="text-center">
-          <div className="w-24 h-1 bg-orange-400 mx-auto mb-6 rounded-full"></div>
-          <h2 className="flex flex-col items-center justify-center font-semibold text-2xl leading-relaxed">
+          <div className="w-16 sm:w-24 h-1 bg-orange-400 mx-auto mb-4 sm:mb-6 rounded-full"></div>
+          <h2 className="flex flex-col items-center justify-center font-semibold text-lg sm:text-xl md:text-2xl leading-relaxed">
             <span>Healthy Affordable Meals</span>
             <span>Delivered Directly</span>
             <span>to Your Door</span>
           </h2>
-          <div className="w-24 h-1 bg-orange-400 mx-auto mt-6 rounded-full"></div>
+          <div className="w-16 sm:w-24 h-1 bg-orange-400 mx-auto mt-4 sm:mt-6 rounded-full"></div>
         </div>
       </div>
 
-      <div className="my-6 bg-white mx-3 rounded-xl p-6">
-        <div className="text-center mb-5">
-          <h2 className="font-bold text-2xl text-black mb-2">Top Categories</h2>
-          <p className="text-gray-600">This is the top picked foods for you</p>
+      <div className="my-6 bg-white mx-3 sm:mx-4 md:mx-6 rounded-xl p-4 sm:p-6">
+        <div className="text-center mb-4 sm:mb-5">
+          <h2 className="font-bold text-xl sm:text-2xl text-black mb-2">Top Categories</h2>
+          <p className="text-sm sm:text-base text-gray-600">This is the top picked foods for you</p>
         </div>
         <CategorySlide
           isFetchingCategories={isFetchingCategories}

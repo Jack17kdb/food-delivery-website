@@ -24,66 +24,66 @@ const Register = () => {
   }
 
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }} className="min-h-screen py-5 bg-gray-300">
-      <div className="grid grid-cols-1 md:grid-cols-2 items-center p-6 m-8 gap-4 bg-white rounded-2xl py-10">
-        <div className="flex flex-col items-center justify-center">
-          <div className="text-center mb-8">
-            <h1 className="font-bold text-4xl mb-2">Welcome!</h1>
-            <p className="text-sm text-gray-500">
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }} className="min-h-screen py-5 bg-gray-300 px-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 items-center p-4 sm:p-6 m-2 sm:m-8 gap-4 bg-white rounded-2xl py-6 sm:py-10">
+        <div className="flex flex-col items-center justify-center w-full max-w-md mx-auto">
+          <div className="text-center mb-6 sm:mb-8">
+            <h1 className="font-bold text-2xl sm:text-3xl md:text-4xl mb-2">Welcome!</h1>
+            <p className="text-xs sm:text-sm text-gray-500">
               Sign up with your username, email and password
             </p>
           </div>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className="w-full">
             <div className="flex flex-col gap-3">
-              <div className="flex items-center border border-gray-300 focus-within:ring-2 focus-within:ring-blue-400 focus-within:outline-none rounded-full p-3 h-10 w-75">
-                <FaUser className="text-gray-300 mr-3" />
+              <div className="flex items-center border border-gray-300 focus-within:ring-2 focus-within:ring-blue-400 focus-within:outline-none rounded-full p-3 h-10 w-full">
+                <FaUser className="text-gray-300 mr-3 flex-shrink-0" />
                 <input
                   type="text"
                   placeholder="Username"
                   value={formData.username}
-                  className="w-full outline-none text-gray-700"
+                  className="w-full outline-none text-gray-700 text-sm sm:text-base"
                   onChange={(e) => setFormData({...formData, username: e.target.value})}
                 />
               </div>
 
-              <div className="flex items-center border border-gray-300 focus-within:ring-2 focus-within:ring-blue-400 focus-within:outline-none rounded-full p-3 h-10 w-75">
-                <FaEnvelope className="text-gray-300 mr-3" />
+              <div className="flex items-center border border-gray-300 focus-within:ring-2 focus-within:ring-blue-400 focus-within:outline-none rounded-full p-3 h-10 w-full">
+                <FaEnvelope className="text-gray-300 mr-3 flex-shrink-0" />
                 <input
                   type="email"
                   placeholder="Email"
                   value={formData.email}
-                  className="w-full outline-none text-gray-700"
+                  className="w-full outline-none text-gray-700 text-sm sm:text-base"
                   onChange={(e) => setFormData({...formData, email: e.target.value})}
                 />
               </div>
 
-              <div className="flex items-center border border-gray-300 focus-within:ring-2 focus-within:ring-blue-400 focus-within:outline-none rounded-full p-3 h-10 w-75">
-                <FaLock className="text-gray-300 mr-3" />
+              <div className="flex items-center border border-gray-300 focus-within:ring-2 focus-within:ring-blue-400 focus-within:outline-none rounded-full p-3 h-10 w-full">
+                <FaLock className="text-gray-300 mr-3 flex-shrink-0" />
                 <input
                   type={showPassword ? "text" : "password"}
                   placeholder="Password"
                   value={formData.password}
-                  className="w-full outline-none text-gray-700"
+                  className="w-full outline-none text-gray-700 text-sm sm:text-base"
                   onChange={(e) => setFormData({...formData, password: e.target.value})}
                 />
                 {!showPassword ? (
                   <FaEye
-                    size={20}
+                    size={18}
                     onClick={togglePassword}
-                    className="flex-end text-gray-300 hover:text-blue-400 cursor-pointer"
+                    className="flex-end text-gray-300 hover:text-blue-400 cursor-pointer flex-shrink-0"
                   />
                 ) : (
                   <FaEyeSlash
-                    size={20}
+                    size={18}
                     onClick={togglePassword}
-                    className="flex-end text-gray-300 hover:text-blue-400 cursor-pointer"
+                    className="flex-end text-gray-300 hover:text-blue-400 cursor-pointer flex-shrink-0"
                   />
                 )}
               </div>
               <div className="flex items-center justify-end">
                 <a
                   href="/forget-password"
-                  className="font-semibold text-gray-800 hover:underline hover:text-blue-400 transition-all duration-300 text-sm"
+                  className="font-semibold text-gray-800 hover:underline hover:text-blue-400 transition-all duration-300 text-xs sm:text-sm"
                 >
                   Forget Password?
                 </a>
@@ -92,7 +92,7 @@ const Register = () => {
                 <button
                   type="submit"
                   disabled={isSigningIn}
-                  className="bg-black text-white font-semibold cursor-pointer rounded-full p-2 h-10 active:scale-95 transition w-full"
+                  className="bg-black text-white font-semibold cursor-pointer rounded-full p-2 h-10 active:scale-95 transition w-full text-sm sm:text-base"
                 >
                   {isSigningIn ? "Signing in..." : "Register"}
                 </button>
@@ -100,7 +100,7 @@ const Register = () => {
 
               <div className="flex items-center my-4">
                 <div className="flex-grow border-t border-gray-400"></div>
-                <div className="mx-3 text-md text-black">or register with</div>
+                <div className="mx-3 text-xs sm:text-sm text-black">or register with</div>
                 <div className="flex-grow border-t border-gray-400"></div>
               </div>
 
@@ -109,8 +109,8 @@ const Register = () => {
                   type="button"
                   className="bg-transparent text-black border border-gray-300 text-sm cursor-pointer rounded-full p-2 h-10 active:scale-95 transition w-full flex items-center justify-center gap-2"
                 >
-                  <FaGoogle className="text-[#DB4437] text-xl" />
-                  <span className="font-medium text-sm">
+                  <FaGoogle className="text-[#DB4437] text-lg sm:text-xl flex-shrink-0" />
+                  <span className="font-medium text-xs sm:text-sm">
                     Register with Google
                   </span>
                 </button>
@@ -121,20 +121,20 @@ const Register = () => {
                   type="button"
                   className="bg-transparent text-black border border-gray-300 text-sm cursor-pointer rounded-full p-2 h-10 active:scale-95 transition w-full flex items-center justify-center gap-2"
                 >
-                  <FaFacebookF className="text-blue-400 text-xl" />
-                  <span className="font-medium text-sm">
+                  <FaFacebookF className="text-blue-400 text-lg sm:text-xl flex-shrink-0" />
+                  <span className="font-medium text-xs sm:text-sm">
                     Register with Facebook
                   </span>
                 </button>
               </div>
 
-              <div className="flex items-center justify-center gap-1 mt-10">
-                <span className="text-gray-700 text-sm">
+              <div className="flex items-center justify-center gap-1 mt-6 sm:mt-10">
+                <span className="text-gray-700 text-xs sm:text-sm">
                   Already have an account?
                 </span>{" "}
                 <a
                   href="/login"
-                  className="font-semibold text-sm text-gray-800 hover:underline hover:text-blue-400 transition-all duration-300"
+                  className="font-semibold text-xs sm:text-sm text-gray-800 hover:underline hover:text-blue-400 transition-all duration-300"
                 >
                   Login Now
                 </a>
