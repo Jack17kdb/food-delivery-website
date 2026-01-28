@@ -33,7 +33,7 @@ const Navbar = () => {
     `text-sm font-medium transition-colors ${isActive ? "text-orange-500" : "text-gray-700 hover:text-orange-500"}`;
 
   return (
-    <nav className="fixed top-4 inset-x-0 mx-auto max-w-7xl px-4 sm:px-6 py-3 bg-white/80 backdrop-blur-md z-50 rounded-full shadow-lg">
+    <nav className={`fixed top-4 inset-x-0 mx-auto max-w-7xl px-4 sm:px-6 py-3 bg-white/80 backdrop-blur-md z-50 shadow-lg transition-all duration-300 ${isMenuOpen ? 'rounded-3xl' : 'rounded-full'}`}>
       <div className="flex items-center justify-between">
         <div>
           <NavLink to="/">
@@ -106,7 +106,7 @@ const Navbar = () => {
       {/* Mobile Menu Dropdown */}
       {isMenuOpen && (
         <div className="md:hidden mt-4 pt-4 border-t border-gray-200">
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-3 pb-2">
             <NavLink 
               to="/" 
               className={navLinkStyles}
