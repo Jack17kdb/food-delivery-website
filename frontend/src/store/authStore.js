@@ -25,7 +25,7 @@ export const useAuthStore = create((set) => ({
             set({isSigningIn: true});
             const res = await axiosInstance.post("/auth/register", data);
             set({authUser: res.data});
-            toast.success("Registration successfull! Please check your email for verification");
+            toast.success("Registration successfull!");
         } catch (error) {
             toast.error(error?.response?.data?.message);
         } finally {

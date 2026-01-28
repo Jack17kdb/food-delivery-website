@@ -45,9 +45,6 @@ const Navbar = () => {
                 <NavLink to="/cart" className={navLinkStyles}>
                     Cart
                 </NavLink>
-                <NavLink to="/foods" className={navLinkStyles}>
-                    Foods
-                </NavLink>
                 <button
                   type='button'
                   className="text-sm font-medium text-gray-700 hover:text-orange-500 transition-colors cursor-pointer"

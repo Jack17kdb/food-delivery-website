@@ -3,6 +3,7 @@ import { FaUser, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
 import { FaGoogle, FaFacebookF } from "react-icons/fa";
 import AuthSlider from "../components/AuthSlider.jsx";
 import { useAuthStore } from "../store/authStore.js";
+import { motion } from 'motion/react';
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -22,7 +23,7 @@ const Login = () => {
   }
 
   return (
-    <div className="min-h-screen py-5 bg-gray-300">
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }} className="min-h-screen py-5 bg-gray-300">
       <div className="grid grid-cols-1 md:grid-cols-2 items-center p-6 m-8 gap-4 bg-white rounded-2xl py-10">
         <div className="flex flex-col items-center justify-center">
           <div className="text-center mb-8">
@@ -70,7 +71,7 @@ const Login = () => {
               </div>
               <div className="flex items-center justify-end">
                 <a
-                  href="/forget-password"
+                  href="#"
                   className="font-semibold text-gray-800 hover:underline hover:text-blue-400 transition-all duration-300 text-sm"
                 >
                   Forget Password?
@@ -131,7 +132,7 @@ const Login = () => {
          <AuthSlider/>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

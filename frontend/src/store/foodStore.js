@@ -12,7 +12,7 @@ export const useFoodStore = create((set) => ({
     allCategories: null,
     searchResults: null,
     foodCategory: null,
-    idFoods: null,
+    food: null,
     userCart: [],
 
     fetchingFoods: async() => {
@@ -69,11 +69,11 @@ export const useFoodStore = create((set) => ({
         }
     },
 
-    fetchingFoodById: async(id) => {
+    fetchingFoodById: async(foodId) => {
         try {
             set({isFetchingFoodById: true});
-            const res = await axiosInstance.get(`/food/${id}`);
-            set({idFoods: res.data.data});
+            const res = await axiosInstance.get(`/food/${foodId}`);
+            set({food: res.data.data});
             toast.success("Search complete");
         } catch (error) {
             console.log("Error fetching: ", error);

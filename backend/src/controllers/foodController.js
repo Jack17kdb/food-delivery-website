@@ -19,7 +19,7 @@ const getAllFoods = async(req, res) => {
 
 const getFoodById = async(req, res) => {
     try {
-        const food = await Food.findById(req.params.id);
+        const food = await Food.findById(req.params.foodId);
         if(!food){
             return res.status(404).json({
                 success: false,

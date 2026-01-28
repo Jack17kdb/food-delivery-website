@@ -7,6 +7,6 @@ router.get('/category/:category', foodController.getFoodsByCategory);
 router.get('/search', foodController.searchFoods);
 router.get('/categories', foodController.getCategories);
 router.get('/foods', foodController.getAllFoods);
-router.get('/:id', foodController.getFoodById);
+router.get('/:foodId', foodController.getFoodById);
 
 export default router;

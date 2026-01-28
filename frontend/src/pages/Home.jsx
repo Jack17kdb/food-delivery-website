@@ -4,6 +4,7 @@ import { useFoodStore } from "../store/foodStore.js";
 import CategorySlide from "../components/CategorySlide.jsx";
 import Navbar from "../components/Navbar.jsx";
 import HeroComponent from "../components/HeroComponent.jsx";
+import { motion } from 'motion/react';
 
 const Home = () => {
   const [isSelectedIndex, setIsSelectedIndex] = useState(null);
@@ -32,7 +33,7 @@ const Home = () => {
   }, [fetchingFoodByCategory, isSelected]);
 
   return (
-    <div className="min-h-screen mx-auto bg-gray-300">
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }} className="min-h-screen mx-auto bg-gray-300">
       <div className="">
         <Navbar />        
         <HeroComponent />
@@ -69,7 +70,7 @@ const Home = () => {
           foodCategory={foodCategory}
         />
       </div>
-    </div>
+    </motion.div>
   );
 };
 

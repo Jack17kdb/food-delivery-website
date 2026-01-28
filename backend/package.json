@@ -8,7 +8,8 @@
     "dev": "nodemon src/server.js",
     "upload": "node src/data/cloudinary-upload.js",
     "push": "node src/data/mongo-push.js",
-    "full": "npm run upload && npm run push"
+    "full": "npm run upload && npm run push",
+    "start": "NODE_ENV=production node src/server.js"
   },
   "keywords": [],
   "author": "",
@@ -22,6 +23,7 @@
     "express": "^5.1.0",
     "express-session": "^1.18.2",
     "fs": "^0.0.1-security",
+    "helmet": "^8.1.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.19.2",
     "nodemailer": "^7.0.10",

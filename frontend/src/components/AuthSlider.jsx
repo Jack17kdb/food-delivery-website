@@ -30,11 +30,7 @@ const AuthSlider = () => {
   const loadPhotos = async () => {
     try {
       setLoading(true);
-      const url = `https://api.spoonacular.com/recipes/random?apiKey=${
-        import.meta.env.VITE_FOOD_API
-      }&number=3`;
-      const response = await axios.get(url);
-      const images = response.data.recipes.map((recipe) => recipe.image);
+      const images = ['/image1.webp', '/image2.webp', '/image3.webp'];
       setPictures(images);
       setCurrentIndex(0);
       setReady(true);
@@ -53,7 +49,7 @@ const AuthSlider = () => {
         <img
           src={pictures[currentIndex]}
           alt="Food slide"
-          className={`w-full h-full rounded-xl transition-opacity duration-500 ${
+          className={`w-full h-full rounded-xl object-contain transition-opacity duration-500 ${
             fade ? "opacity-100" : "opacity-0"
           }`}
         />

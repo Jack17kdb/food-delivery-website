@@ -2,6 +2,7 @@ import React from "react";
 import { useFoodStore } from "../store/foodStore.js";
 import Navbar from "../components/Navbar.jsx";
 import SearchCard from "../components/SearchCard.jsx";
+import { motion } from 'motion/react';
 
 const SearchPage = () => {
     const { searchResults, isSearchingFoods } = useFoodStore();
@@ -10,7 +11,7 @@ const SearchPage = () => {
     const foodsToShow = searchResults ? searchResults.slice(0, maxItems) : [];
 
     return (
-        <div className='min-h-screen bg-gray-50 pt-28 pb-10'>
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }} className='min-h-screen bg-gray-50 pt-28 pb-10'>
             <Navbar />
             <div className='max-w-4xl mx-auto px-4'>
                 <div className="mb-8">
@@ -39,7 +40,7 @@ const SearchPage = () => {
                     </div>
                 )}
             </div>
-        </div>
+        </motion.div>
     );
 }
 

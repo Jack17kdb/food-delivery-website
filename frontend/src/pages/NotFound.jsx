@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar.jsx';
+import { motion } from 'motion/react';
 
 const NotFound = () => {
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col">
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }} className="min-h-screen bg-gray-100 flex flex-col">
       <Navbar />
       
       <div className="flex-grow flex items-center justify-center p-6">
@@ -41,7 +42,7 @@ const NotFound = () => {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import Navbar from '../components/Navbar.jsx'
 import Order from '../components/Order.jsx'
 import { useCartStore } from '../store/cartStore.js'
+import { motion } from 'motion/react'
 
 const Cart = () => {
   const { cartItems, getCartItems } = useCartStore();
@@ -15,7 +16,7 @@ const Cart = () => {
   }, 0) : 0;
 
   return (
-    <div className='min-h-screen bg-gray-200 pt-28 pb-10'>
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }} className='min-h-screen bg-gray-200 pt-28 pb-10'>
         <Navbar />
         
         <div className='max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-3 gap-8'>
@@ -75,7 +76,7 @@ const Cart = () => {
               </div>
             </div>
         </div>
-    </div>
+    </motion.div>
   )
 }
 
