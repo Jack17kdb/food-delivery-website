@@ -9,7 +9,8 @@
     "upload": "node src/data/cloudinary-upload.js",
     "push": "node src/data/mongo-push.js",
     "full": "npm run upload && npm run push",
-    "start": "NODE_ENV=production node src/server.js"
+    "start": "NODE_ENV=production node src/server.js",
+    "seed": "node seed.js"
   },
   "keywords": [],
   "author": "",
